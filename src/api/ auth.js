@@ -10,7 +10,7 @@ export const signUp = async ({ username, password }) => {
       { username, password },
       { withCredentials: true }
     );
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -24,7 +24,7 @@ export const signIn = async ({ username, password }) => {
       { username, password },
       { withCredentials: true }
     );
-    console.log(response);
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -39,7 +39,7 @@ export const signOut = async () => {
       {},
       { withCredentials: true }
     );
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log(error);

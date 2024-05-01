@@ -23,8 +23,7 @@ const StorySlider = ({ story }) => {
   );
   const [likeCount, setLikeCount] = React.useState(story?.likes?.length);
 
-  console.log("storySlider", story);
-  console.log("likes", story?.likes?.length);
+
 
   const handlePrevious = () => {
     setCurrentSlide((prev) => (prev === 0 ? prev : prev - 1));

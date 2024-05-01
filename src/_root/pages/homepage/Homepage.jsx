@@ -1,6 +1,10 @@
 import React from "react";
 import { getAllStory, getStoryByCategory } from "../../../api/story";
-import {CategoryFilterCard ,CategorySectionCard, Modal} from "../../../components/index.js";
+import {
+  CategoryFilterCard,
+  CategorySectionCard,
+  Modal,
+} from "../../../components/index.js";
 import CATEGORY from "../../../constants/categories";
 import { AuthContext } from "../../../contexts/AuthContexts";
 import { ModalContext } from "../../../contexts/ModalContexts";
@@ -17,15 +21,10 @@ const Homepage = () => {
   const [selectedCategory, setSelectedCategory] = React.useState("All");
 
   const userStories = Stories?.filter((story) => story.userId === user?._id);
-  console.log("userStories", userStories);
 
   const FilteredStories = Stories?.filter(
     (story) => selectedCategory === "All" || story.category === selectedCategory
   );
-
-  console.log("Stories", Stories);
-  console.log("user", user);
-  console.log("FilteredStories", FilteredStories);
 
   React.useEffect(() => {
     const fetchStories = async () => {
