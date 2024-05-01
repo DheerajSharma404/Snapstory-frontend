@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = `http://localhost:3000/api/v1/user`;
+const baseURL = `https://snapstory-backend.onrender.com/api/v1/user`;
 
 export const signUp = async ({ username, password }) => {
   try {
