@@ -1,0 +1,75 @@
+.dropdownWrapper {
+  position: relative;
+  display: inline-block;
+  width: 62%;
+  border: 1px solid var(--color-secondary);
+}
+.selectedOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0.8rem;
+  white-space: nowrap;
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--color-secondary);
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+
+  right: 0.8rem;
+}
+.arrow::hover {
+  cursor: pointer;
+}
+
+.optionsList {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+
+.option:hover {
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdownWrapper {
+    width: 100%;
+  }
+  .selectedOption {
+    font-size: var(--text-xxs);
+  }
+  .option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 0.9rem;
+  white-space: nowrap;
+  font-size: var(--text-xxs);
+  font-weight: 600;
+}
+}

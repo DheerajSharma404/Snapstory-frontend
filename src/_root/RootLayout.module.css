@@ -1,0 +1,8 @@
+@import "../globals.css";
+.main {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 4.5625rem);
+  padding-top: 4.5625rem;
+  overflow-y: scroll;
+}

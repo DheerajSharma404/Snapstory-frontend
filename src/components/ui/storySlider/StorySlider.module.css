@@ -1,0 +1,162 @@
+.storySliderWrapper {
+  position: relative;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
+.storySlider {
+  width: 21.1875rem;
+  height: 37.8406rem;
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  position: relative;
+  box-shadow: 2px 2px 20px 2px rgba(255, 255, 255, 0.5);
+  /* border: 1px solid blue; */
+}
+
+a .slideImage {
+  position: relative;
+  inset: 0;
+}
+
+.slideIndicatorWrapper {
+  position: absolute;
+  top: 0.5rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  z-index: 100;
+}
+
+.slideContentWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 4rem;
+  background: linear-gradient(
+    0deg,
+    rgb(0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.779) 25%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(255, 255, 255, 0) 75%,
+    rgb(0, 0, 0) 100%
+  );
+  color: var(--color-primary);
+  z-index: 10000;
+}
+
+.btn {
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.closeBtn {
+  top: 1.5rem;
+  left: 0.5rem;
+}
+.shareBtn {
+  top: 1.5rem;
+  right: 0.5rem;
+}
+
+.bookmarkBtn {
+  bottom: 1rem;
+  left: 0.5rem;
+}
+
+.likeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--color-primary);
+  gap: 0.5rem;
+  bottom: 1rem;
+  right: 0.5rem;
+}
+
+.storySliderControls {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.previousBtn,
+.nextBtn {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .storySliderWrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .storySliderWrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+  }
+  .storySlider {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0px;
+  }
+
+  .slideIndicatorWrapper {
+    position: absolute;
+    top: 0.5rem;
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    z-index: 100;
+  }
+
+  .storySliderControls {
+    /* border: 1px solid blue; */
+    height: 80%;
+  }
+  .previousBtn,
+  .nextBtn {
+    background-color: transparent;
+    border: none;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    height: 100%;
+    opacity: 0;
+  }
+}

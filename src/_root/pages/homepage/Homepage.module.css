@@ -1,0 +1,40 @@
+.categoryFilter {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.categoryFilter::-webkit-scrollbar {
+  display: none;
+}
+
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 609px) {
+  .categoryFilter {
+    display: flex;
+    gap: 1rem;
+    padding-inline: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    overflow-x: auto;
+  }
+  .categorySection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    padding-top: 0;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease;
+  }
+}

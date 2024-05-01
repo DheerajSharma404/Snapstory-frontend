@@ -1,0 +1,53 @@
+.categoryFilterCard {
+  width: 14.6875rem;
+  flex-shrink: 0;
+  height: 14.6875rem;
+  position: relative;
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.categoryFilterCard:hover {
+  transform: scale(1.05);
+}
+.categoryFilterCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.6;
+}
+.selected {
+  border: var(--border-color-2) 5px solid;
+}
+
+.categoryFilterCardTitleWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-xl);
+  color: var(--color-primary);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+@media screen and (max-width: 609px) {
+  .categoryFilterCard {
+    width: 10rem;
+    height: 6rem;
+    border-radius: var(--border-radius-md);
+  }
+  .categoryFilterCardTitleWrapper {
+    font-size: var(--text-md);
+  }
+}

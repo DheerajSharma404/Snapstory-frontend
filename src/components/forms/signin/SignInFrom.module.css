@@ -1,0 +1,185 @@
+.signInFromWrapper {
+  /* border: 1px solid #ccc; */
+  background-color: var(--color-primary);
+  padding: 6rem;
+  padding-block: 7rem;
+  width: 27rem;
+  height: 16.15rem;
+  border-radius: var(--border-radius-lg);
+  position: relative;
+}
+
+.signInFormHeading {
+  font-size: var(--text-xl-2);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  align-items: cneter;
+  justify-content: cneter;
+
+  /* border: 1px solid #ccc;s */
+}
+
+.formFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid blue; */
+  gap: 2.5rem;
+}
+
+.formInputWrapper {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.formError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  margin-top: 1.2rem;
+}
+
+.formInputWrapper label {
+  color: var(--color-white);
+  flex: 0.7;
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0.5rem;
+  padding-right: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+input:focus {
+  outline: none;
+  border: 1px solid var(--color-secondary);
+}
+
+.formInputWrapper input::placeholder {
+  color: var(--color-tertiary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.passwordVisibilityToggleIcon {
+  position: absolute;
+  right: 0.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+  color: var(--color-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: cneter;
+}
+
+.modalCloseIcon {
+  position: absolute;
+  top: 3.2rem;
+  right: 3.8rem;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  background-color: var(--color-primary);
+  transition: all 0.3s;
+}
+.modalCloseIcon:hover {
+  transform: scale(1.1);
+}
+.loginBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+.loginBtn {
+  background-color: var(--accent-2);
+  color: var(--color-secondary);
+  padding: 0.8rem 2rem;
+  font-size: var(--text-md);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.loginBtn:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 609px) {
+  .signInFromWrapper {
+    padding: 2rem;
+    padding-block: 5rem;
+    width: 60%;
+  }
+  .signInFormHeading {
+    font-size: var(--text-md);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .formInputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    position: relative;
+  }
+  .passwordVisibilityToggleIcon {
+    position: absolute;
+    right: 0.5rem;
+    top: 1.7rem;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    color: var(--color-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: cneter;
+  }
+  .formInputWrapper label {
+    font-size: var(--text-body);
+  }
+  input {
+    font-size: var(--text-xxs);
+  }
+  .formError {
+    font-size: var(--text-xs);
+  }
+  .loginBtn {
+    padding: 0.8rem 1.5rem;
+    font-size: var(--text-sm);
+  }
+  .modalCloseIcon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.2rem;
+    background-color: var(--color-primary);
+    transition: all 0.3s;
+  }
+}

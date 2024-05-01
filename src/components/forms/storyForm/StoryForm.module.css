@@ -1,0 +1,367 @@
+.storyFormWrapper {
+  width: 38.625rem;
+  height: 31.5rem;
+  background-color: var(--color-primary);
+  padding: 3rem;
+  border-radius: var(--border-radius-lg);
+  position: relative;
+}
+.formHeader {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slidesWrapper {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.slidesWrapper p {
+  color: var(--color-secondary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-align: end;
+}
+
+.slides {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* border: 1px solid green; */
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.26rem 0.9rem;
+  white-space: nowrap;
+  font-size: var(--text-body);
+  border-radius: var(--border-radius);
+  background-color: var((--color-primary));
+  /* border: 1px solid blue; */
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.slideTitle {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: cneter;
+}
+.slideTitle p {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.removeSlide {
+  position: absolute;
+  top: 0rem;
+  right: 0.2rem;
+  width: 0.8rem;
+}
+
+.addSlide {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: cneter;
+  white-space: nowrap;
+  padding: 1.26rem 0.9rem;
+  border-radius: var(--border-radius);
+  background-color: var((--color-primary));
+  /* border: 1px solid blue; */
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.addSlide p {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+.slideFormWrapper {
+  /* border: 1px solid red;s */
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.slideForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* border: 1px solid red; */
+}
+.slidefieldWrapper {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 1rem;
+  /* border: 1px solid red; */
+}
+.slideInputWrapper {
+  display: flex;
+  flex: 1;
+  padding-right: 10rem;
+  /* border: 1px solid black; */
+}
+.slideInputWrapper label {
+  display: flex;
+  flex: 1;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+.slideInputWrapper input,
+textarea {
+  flex: 1.5;
+  align-items: start;
+  padding: 0.8rem;
+  border: 1px solid var(--color-secondary);
+  background-color: var(--color-white);
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.slideInputWrapper textarea {
+  resize: none;
+}
+.slideInputWrapper input::placeholder,
+textarea::placeholder {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--color-tertiary);
+}
+.slideInputWrpper textarea::placeholder {
+  letter-spacing: thin;
+}
+.slideInputWrapper textarea:focus {
+  outline: none;
+}
+
+.activeSlide {
+  border: 2px solid var(--accent-2);
+}
+
+.slideInputWrapper select {
+  display: flex;
+  flex: 1.5;
+  padding: 0.8rem;
+  border: 1px solid var (--color-secondary);
+  font-size: var(--text-body);
+  font-weight: 600;
+  background-color: var(--color-white);
+  color: var(--color-tertiary);
+  position: relative;
+}
+
+.formError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.closeModalBtn {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var(--color-primary);
+  border: none;
+  color: var(--color-white);
+  font-size: var(--text-md);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.closeModalBtn:hover {
+  transform: scale(1.1);
+}
+.btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.btn {
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--text-md);
+  font-weight: 700;
+  padding: 0.7rem 2.5rem;
+  border-radius: var(--border-radius-xl);
+  transition: transform 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.previousBtn {
+  background-color: var(--accent-3);
+  padding: 0.7rem 1.4rem;
+}
+
+.nextBtn {
+  background-color: var(--accent-2);
+}
+
+.postBtn {
+  background-color: var(--accent-1);
+}
+.slideInputWrapper p {
+  position: absolute;
+  width: 8rem;
+  right: 4.5rem;
+  align-self: center;
+  color: var(--color-secondary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .storyFormWrapper {
+    width: 70%;
+    height: 54%;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .formHeader {
+    font-size: var(--text-md);
+    font-weight: 700;
+  }
+  .slidesWrapper {
+    gap: 1rem;
+    flex: 0.2;
+  }
+  .slides {
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+
+    justify-content: start;
+    white-space: wrap;
+
+    padding-top: 4rem;
+  }
+  .slidesWrapper p {
+    font-size: var(--text-xxs);
+  }
+  .slide {
+    white-space: pre-wrap;
+    padding: 0.6rem 0.5rem;
+  }
+  .slideTitle {
+    flex-direction: column;
+    gap: 0.1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .slideTitle p {
+    font-size: var(--text-sm);
+  }
+
+  .addSlide {
+    flex-direction: column;
+    padding: 0.6rem 0.8rem;
+  }
+  .addSlide p {
+    font-size: var(--text-sm);
+  }
+  .removeSlide {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.2rem;
+    width: 0.8rem;
+  }
+  .slideFormWrapper {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    flex: 1;
+  }
+  .slideForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.9rem;
+  }
+
+  .slideInputWrapper {
+    padding: 0rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .slideInputWrapper label {
+    font-size: var(--text-body);
+  }
+
+  .slideInputWrapper input,
+  textarea {
+    padding: 0.5rem;
+    font-size: var(--text-xxs);
+  }
+
+  .slideInputWrapper input::placeholder,
+  textarea::placeholder {
+    font-size: var(--text-xxs);
+    font-weight: 600;
+    color: var(--color-tertiary);
+  }
+  .slideInputWrpper textarea::placeholder {
+    letter-spacing: thin;
+  }
+  .slideInputWrapper select {
+    padding: 0.5rem;
+  }
+  .closeModalBtn {
+    width: 1.2rem;
+    height: 1.2rem;
+    top: 0.3rem;
+    right: 0.3rem;
+    font-size: var(--text-sm);
+    padding: 0.3rem;
+  }
+  .btn {
+    font-size: var(--text-sm);
+    padding: 0.5rem 2rem;
+  }
+  .postBtnWrapper {
+    display: flex;
+    flex: 1;
+    justify-content: start;
+    align-items: end;
+    padding-inline: 3rem;
+  }
+  .closeModalBtn {
+    position: absolute;
+    width: 1.9rem;
+    height: 1.9rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: var(--color-primary);
+    border: none;
+    color: var(--color-white);
+    font-size: var(--text-md);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+}
