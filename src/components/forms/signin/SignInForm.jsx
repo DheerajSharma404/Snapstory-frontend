@@ -80,7 +80,9 @@ const SignInForm = () => {
               onChange={handleChange}
             />
             <img
-              src='/assets/icons/eye.svg'
+              src={`/assets/image/${
+                showPassword ? "eye.png" : "eye-closed.png"
+              }`}
               alt='passswor visible toggle image'
               className={styles.passwordVisibilityToggleIcon}
               onClick={handleShowPassword}
