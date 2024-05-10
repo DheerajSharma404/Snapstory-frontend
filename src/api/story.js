@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = `http://localhost:3000/api/v1/story`;
+const baseURL = `https://snapstory-backend.onrender.com/api/v1/story`;
 
 export const createStory = async ({ category, slides }) => {
   try {
