@@ -63,6 +63,7 @@ input {
   border: 1px solid var(--color-secondary);
   background-color: var(--color-primary);
   color: var(--color-white);
+  position: relative;
 }
 input:focus {
   outline: none;
@@ -78,7 +79,9 @@ input:focus {
 .passwordVisibilityToggleIcon {
   position: absolute;
   right: 0.5rem;
+  top: 0.3rem;
   width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
   color: var(--color-tertiary);
   display: flex;
@@ -90,7 +93,6 @@ input:focus {
   position: absolute;
   top: 3.2rem;
   right: 3.8rem;
-
   cursor: pointer;
   display: flex;
   align-items: center;

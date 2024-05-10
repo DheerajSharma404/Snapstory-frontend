@@ -43,7 +43,7 @@ const SignUpForm = () => {
     }
     // If validation is successful, send a request to the backend
     const response = await signUp(formData);
- 
+
     if (response?.success) {
       // Handle successful registration (e.g., navigate to another page)
       toggleModal();
@@ -80,7 +80,9 @@ const SignUpForm = () => {
               onChange={handleChange}
             />
             <img
-              src='/assets/icons/eye.svg'
+              src={`/assets/images/${
+                showPassword ? "eye.png" : "closed-eyes.png"
+              }`}
               alt='passswor visible toggle image'
               className={styles.passwordVisibilityToggleIcon}
               onClick={handleShowPassword}
