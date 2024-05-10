@@ -81,7 +81,7 @@ const SignInForm = () => {
             />
             <img
               src={`/assets/image/${
-                showPassword ? "eye.png" : "eye-closed.png"
+                showPassword ? "eye.png" : "closed-eyes.png"
               }`}
               alt='passswor visible toggle image'
               className={styles.passwordVisibilityToggleIcon}
