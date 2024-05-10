@@ -80,7 +80,7 @@ const SignInForm = () => {
               onChange={handleChange}
             />
             <img
-              src={`/assets/image/${
+              src={`/assets/images/${
                 showPassword ? "eye.png" : "closed-eyes.png"
               }`}
               alt='passswor visible toggle image'
