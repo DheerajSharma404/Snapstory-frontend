@@ -1,29 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useLocation, useNavigation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { toggleStoryBookmark, toggleStoryLike } from "../../../api/story.js";
 import { AuthContext } from "../../../contexts/AuthContexts.jsx";
 import { ModalContext } from "../../../contexts/ModalContexts.jsx";
+import { StoryContext } from "../../../contexts/StoryContexts.jsx";
 import SignInForm from "../../forms/signin/SignInForm.jsx";
 import styles from "./StorySlider.module.css";
 
 const StorySlider = ({ story }) => {
   const location = useLocation();
-  const navigate = useNavigation;
+  const navigate = useNavigate();
+  const { setStories } = React.useContext(StoryContext);
+
   const { toggleModal, changeModalContent } = React.useContext(ModalContext);
   const { isAuthenticated, user } = React.useContext(AuthContext);
 
   const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [isBookmarked, setIsBookmarked] = React.useState(
-    story?.bookmarkUser?.includes(user?._id)
-  );
-  const [isLiked, setIsLiked] = React.useState(
-    story?.likes?.includes(user?._id)
-  );
+  const [isBookmarked, setIsBookmarked] = React.useState(story?.isBookmarked);
+  const [isLiked, setIsLiked] = React.useState(story?.isLiked);
   const [likeCount, setLikeCount] = React.useState(story?.likes?.length);
-
-
 
   const handlePrevious = () => {
     setCurrentSlide((prev) => (prev === 0 ? prev : prev - 1));
@@ -35,11 +32,11 @@ const StorySlider = ({ story }) => {
     );
   };
   const handleModalClose = () => {
-    toggleModal();
     if (location.pathname === `/${story._id}`) {
       navigate("/");
+    } else {
+      toggleModal();
     }
-    window.location.reload();
   };
   const handleShare = () => {
     navigator.clipboard
@@ -57,6 +54,17 @@ const StorySlider = ({ story }) => {
       if (response?.success) {
         setIsBookmarked((prev) => !prev);
         toast.success("Successfully toggled bookmark");
+        setStories((prev) => {
+          const updataedStories = prev.map((prevStory) => {
+            if (prevStory?._id === story?._id) {
+              return {
+                ...prevStory,
+                isBookmarked: !prevStory.isBookmarked,
+              };
+            }
+          });
+          return updataedStories;
+        });
       } else {
         toast.error(response?.message);
       }
@@ -68,19 +76,31 @@ const StorySlider = ({ story }) => {
   const handleLike = async () => {
     if (isAuthenticated) {
       const response = await toggleStoryLike(story._id);
-      console.log("response", response?.data);
       if (response?.success) {
         setIsLiked((prev) => !prev);
+        setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
+        setStories((prev) => {
+          const updatedStories = prev.map((prevStory) => {
+            if (prevStory?._id === story?._id) {
+              return {
+                ...prevStory,
+                isLiked: !prevStory.isLiked,
+                likes: isLiked
+                  ? prevStory.likes.filter((like) => like !== user._id)
+                  : [...prevStory.likes, user._id],
+              };
+            } else {
+              return prevStory;
+            }
+          });
+          return updatedStories;
+        });
         toast.success("Successfully toggled like");
       } else {
         toast.error(response?.message);
       }
     } else {
       changeModalContent(<SignInForm />);
-    }
-    if (!story?.likes?.includes(user?._id) && !isLiked) {
-      setIsLiked(true);
-      setLikeCount((prev) => prev + 1);
     }
   };
 
@@ -92,8 +112,13 @@ const StorySlider = ({ story }) => {
     }, 1500);
 
     return () => clearInterval(interval);
-  }, [currentSlide, story, user?._id, likeCount, isLiked, isBookmarked]);
+  }, [currentSlide, story?.slides?.length]);
 
+  React.useEffect(() => {
+    setIsBookmarked(story?.isBookmarked);
+    setIsLiked(story?.isLiked);
+    setLikeCount(story?.likes?.length);
+  }, [story]);
   return (
     <div className={styles.storySliderWrapper}>
       <div className={styles.storySlider}>

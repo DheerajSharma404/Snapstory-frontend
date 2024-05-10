@@ -10,7 +10,7 @@ const SignInForm = () => {
   const { login } = React.useContext(AuthContext);
   const { toggleModal } = React.useContext(ModalContext);
   const [showPassword, setShowPassword] = React.useState(false);
-  const [formErrors, setFormErrors] = React.useState({}); //[username: "username is required", password: "password is required"
+  const [formErrors, setFormErrors] = React.useState(null); //[username: "username is required", password: "password is required"
   const [formData, setFromData] = React.useState({
     username: "",
     password: "",
@@ -30,32 +30,28 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log("formData", formData);
-      const validation = userValidationSchema.safeParse(formData);
 
-      if (!validation.success) {
-        const error = validation.error;
-        let newError = {};
-        for (const issue of error.issues) {
-          newError = { ...newError, [issue.path[0]]: issue.message };
-        }
-        return setFormErrors(newError);
-      }
-      // If validation is successful, send a request to the backend
-      const response = await signIn(formData);
-      if (response.success) {
-        // Handle successful registration (e.g., navigate to another page)
-        login(response.data);
-        toggleModal();
-        toast.success(response?.message);
-      }
-      // Handle failed registration (e.g., show an error message)
+    const validation = userValidationSchema.safeParse(formData);
 
-      setFormErrors({});
-    } catch (error) {
-      toast.error("Login failed");
+    if (!validation.success) {
+      const error = validation.error;
+      let newError = {};
+      for (const issue of error.issues) {
+        newError = { ...newError, [issue.path[0]]: issue.message };
+      }
+      return setFormErrors(newError);
     }
+    // If validation is successful, send a request to the backend
+    const response = await signIn(formData);
+    if (response.success) {
+      // Handle successful registration (e.g., navigate to another page)
+      login(response.data);
+      toggleModal();
+      toast.success(response?.message);
+    } else {
+      toast.error(response?.error?.explanation);
+    }
+    setFormErrors({});
   };
 
   return (

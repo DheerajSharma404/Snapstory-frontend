@@ -1,20 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getStoryById } from "../../../api/story";
 import { Modal, StorySlider } from "../../../components/index.js";
+import { StoryContext } from "../../../contexts/StoryContexts";
 
 const ViewStory = () => {
   const { storyId } = useParams();
-  const [story, setStory] = React.useState(null);
+  const { Stories } = React.useContext(StoryContext);
 
-  const fetchStory = async () => {
-    const response = await getStoryById(storyId);
-    setStory(response.data);
-  };
-
-  React.useEffect(() => {
-    fetchStory();
-  }, []);
+  const story = Stories.find((story) => story._id === storyId);
+  console.log(story);
 
   return (
     <Modal>

@@ -1,11 +1,9 @@
 .categorySectionCardWrapper {
   display: flex;
-
   flex-direction: column;
   justify-content: start;
   gap: 2rem;
-  height: 36rem;
-  padding-bottom: 2rem;
+  min-height: 36rem;
   background-color: var(--color-primary);
   transition: all 0.3s ease;
 }
@@ -19,23 +17,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: start;
-  gap: 6.75rem;
-  row-gap: 2rem;
 
-  height: 30rem;
-  overflow: hidden;
-}
-.expanded {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
   gap: 6.75rem;
   row-gap: 2rem;
+  min-height: 30rem;
 }
 
 .noStory {
   display: flex;
-  height: 100%;
+  min-height: 30rem;
   justify-content: center;
   align-items: center;
   font-size: var(--text-2xl);

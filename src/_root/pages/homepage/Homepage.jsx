@@ -1,57 +1,38 @@
 import React from "react";
-import { getAllStory, getStoryByCategory } from "../../../api/story";
 import {
   CategoryFilterCard,
   CategorySectionCard,
   Modal,
 } from "../../../components/index.js";
 import CATEGORY from "../../../constants/categories";
-import { AuthContext } from "../../../contexts/AuthContexts";
 import { ModalContext } from "../../../contexts/ModalContexts";
+import { StoryContext } from "../../../contexts/StoryContexts";
 import styles from "./Homepage.module.css";
 
 const Homepage = () => {
   const { isModalOpen, ModalContent } = React.useContext(ModalContext);
-
-  const { user } = React.useContext(AuthContext);
-  const [Stories, setStories] = React.useState([]);
+  const {
+    Stories,
+    userStories,
+    selectedCategory,
+    setSelectedCategory,
+    storiesByCategory,
+    setStoriesByCategory,
+  } = React.useContext(StoryContext);
   const [category] = React.useState(CATEGORY);
-  const [storiesByCategory, setStoriesByCategory] = React.useState([]);
-
-  const [selectedCategory, setSelectedCategory] = React.useState("All");
-
-  const userStories = Stories?.filter((story) => story.userId === user?._id);
 
   const FilteredStories = Stories?.filter(
     (story) => selectedCategory === "All" || story.category === selectedCategory
   );
-
-  React.useEffect(() => {
-    const fetchStories = async () => {
-      try {
-        if (setSelectedCategory && selectedCategory !== "All") {
-          const response = await getStoryByCategory(selectedCategory);
-          setStoriesByCategory(response?.data);
-        } else {
-          const response = await getAllStory();
-          setStories(response?.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchStories();
-  }, [user?._id, selectedCategory]);
 
   return (
     <>
       <div className={styles.categoryFilter}>
         {category.map((category) => (
           <CategoryFilterCard
-            key={category.title}
-            title={category.title}
-            imageUrl={category.imageUrl}
+            key={category?.title}
+            title={category?.title}
+            imageUrl={category?.imageUrl}
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
@@ -71,10 +52,10 @@ const Homepage = () => {
           {category.map((category) =>
             category.title === "All" ? null : (
               <CategorySectionCard
-                key={category.title}
-                categoryName={category.title}
+                key={category?.title}
+                categoryName={category?.title}
                 stories={FilteredStories?.filter(
-                  (story) => story.category === category.title
+                  (story) => story?.category === category?.title
                 )}
               />
             )
@@ -85,6 +66,7 @@ const Homepage = () => {
           <CategorySectionCard
             categoryName={selectedCategory}
             stories={storiesByCategory}
+            setStories={setStoriesByCategory}
           />
         </section>
       )}

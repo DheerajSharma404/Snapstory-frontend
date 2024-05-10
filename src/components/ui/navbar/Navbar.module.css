@@ -1,6 +1,5 @@
 @import "../../../globals.css";
-.navWrapper {
-  /* border: 1px solid red; */
+.navWrapper { 
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +21,6 @@
 }
 
 .menuWrapper {
-  /* border: 1px solid green; */
   padding-block: 0.657rem;
   display: flex;
   align-items: center;
@@ -31,8 +29,6 @@
 }
 
 .user {
-  /* border: 1px solid yellow; */
-
   display: flex;
   align-items: center;
   gap: 1.5rem;

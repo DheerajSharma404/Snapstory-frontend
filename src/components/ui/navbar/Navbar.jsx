@@ -42,12 +42,12 @@ const Navbar = () => {
   const handleLogout = async () => {
     if (isAuthenticated) {
       const response = await signOut();
-      if (response?.success) {
+      if (response.success) {
         logout(response?.data);
         setIsDropdownOpen(false);
         toast.success(response?.message);
       } else {
-        toast.error(response?.message);
+        toast.error(response?.error?.explanation);
       }
     }
   };

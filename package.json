@@ -11,11 +11,8 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
-    "js-cookie": "^3.0.5",
-    "query-string": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-insta-stories": "^2.6.2",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.22.3",
     "sonner": "^1.4.41",

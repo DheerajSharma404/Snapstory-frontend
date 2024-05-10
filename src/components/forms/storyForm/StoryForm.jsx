@@ -3,16 +3,21 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
-import { createStory } from "../../../api/story.js";
+import { createStory, editStory } from "../../../api/story.js";
 import { ModalContext } from "../../../contexts/ModalContexts.jsx";
+import { StoryContext } from "../../../contexts/StoryContexts";
 import { createStoryValidationSchema } from "../../../validations/story.validation.js";
 import CustomDropdown from "../../ui/customDropdown/CustomDropdown.jsx";
 import styles from "./StoryForm.module.css";
-const StoryForm = ({ story }) => {
+
+const StoryForm = ({ story, actionType }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isDesktop = useMediaQuery({ query: "(min-width: 769px)" });
+
+  const { setStories } = React.useContext(StoryContext);
+
   const { toggleModal } = React.useContext(ModalContext);
-  const [formErrors, setFormErrors] = React.useState({}); //[category: "category is required", slides: "slides is required"]
+  const [formErrors, setFormErrors] = React.useState(null); //[category: "category is required", slides: "slides is required"]
   const [formData, setFormData] = React.useState({
     category: story ? story.category : "Select Category",
     slides: story
@@ -48,6 +53,7 @@ const StoryForm = ({ story }) => {
       ...formData,
       slides: [...formData.slides, newSlide],
     });
+    setActiveSlide(formData.slides.length);
   };
 
   const handleRemoveSlide = (idx, e) => {
@@ -81,29 +87,48 @@ const StoryForm = ({ story }) => {
     toggleModal(null);
   };
 
-  const handlePost = async (e) => {
+  const handlePostAndEditPost = async (e) => {
     e.preventDefault();
-    try {
-      console.log("formData", formData);
-      const validation = createStoryValidationSchema.safeParse(formData);
-
-      if (!validation.success) {
-        const error = validation.error;
-        let newError = {};
-        for (const issue of error.issues) {
-          newError = { ...newError, [issue.path[0]]: issue.message };
-        }
-        return setFormErrors(newError);
+    const validation = createStoryValidationSchema.safeParse(formData);
+    if (!validation.success) {
+      const error = validation.error;
+      let newError = {};
+      for (const issue of error.issues) {
+        newError = { ...newError, [issue.path[0]]: issue.message };
       }
-      setFormErrors({});
-      const response = await createStory(formData);
-      if (response.success) {
+      return setFormErrors(newError);
+    }
+    setFormErrors({});
+    if (actionType === "edit") {
+      const response = await editStory(story._id, formData);
+      if (response?.success) {
         toggleModal();
         toast.success(response?.message);
-        window.location.reload();
+        setStories((prev) => {
+          const updatedStories = prev.map((prevStory) => {
+            if (prevStory._id === story._id) {
+              return {
+                ...prevStory,
+                ...response.data,
+              };
+            } else {
+              return prevStory;
+            }
+          });
+          return updatedStories;
+        });
+      } else {
+        toast.error(response?.error?.explanation);
       }
-    } catch (error) {
-      toast.error("Story creation failed");
+    } else {
+      const response = await createStory(formData);
+      if (response?.success) {
+        toggleModal();
+        toast.success(response?.message);
+        setStories((prev) => [response.data, ...prev]);
+      } else {
+        toast.error(response?.error?.explanation);
+      }
     }
   };
 
@@ -113,7 +138,7 @@ const StoryForm = ({ story }) => {
       <div className={styles.slidesWrapper}>
         {isDesktop && <p>Add up to 6 slides.</p>}
         <div className={styles.slides}>
-          {formData.slides.map((slide, index) => (
+          {formData?.slides.map((slide, index) => (
             <div
               key={index}
               className={`${styles.slide} ${
@@ -138,7 +163,7 @@ const StoryForm = ({ story }) => {
               )}
             </div>
           ))}
-          {formData.slides.length <= 5 && (
+          {formData?.slides.length <= 5 && (
             <div
               className={`${styles.addSlide} ${styles.slide}`}
               onClick={(e) => handleAddSlide(e)}
@@ -213,9 +238,14 @@ const StoryForm = ({ story }) => {
               {isDesktop && <p>This field will be common for all slides</p>}
             </div>
           </div>
-          {formErrors.slides && (
+          {formErrors?.category && (
             <div className={styles.formError}>
-              <p>{formErrors.slides}</p>
+              <p>All Fields are Required</p>
+            </div>
+          )}
+          {formErrors?.slides && (
+            <div className={styles.formError}>
+              <p>All Fields are Required</p>
             </div>
           )}
           <div className={styles.btnWrapper}>
@@ -237,10 +267,10 @@ const StoryForm = ({ story }) => {
             )}
             <div className={styles.postBtnWrapper}>
               <button
-                onClick={(e) => handlePost(e)}
+                onClick={(e) => handlePostAndEditPost(e)}
                 className={`${styles.postBtn} ${styles.btn}`}
               >
-                Post
+                {actionType === "edit" ? "Edit Post" : "Post"}
               </button>
             </div>
           </div>

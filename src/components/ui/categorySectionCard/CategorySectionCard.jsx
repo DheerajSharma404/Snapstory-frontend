@@ -1,15 +1,25 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable react/prop-types */
 import React from "react";
+
 import StoryCard from "../storyCard/StoryCard";
 import styles from "./CategorySectionCard.module.css";
 
 const CategorySectionCard = ({ categoryName, stories }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const [displayedStories, setDisplayedStories] = React.useState(
+    stories?.slice(0, 4)
+  );
+
+  console.log(stories);
 
   const handleSeeMore = () => {
+    setDisplayedStories(stories);
     setIsExpanded((prev) => !prev);
   };
+  React.useEffect(() => {
+    setDisplayedStories(stories?.slice(0, 4));
+  }, [stories]);
   return (
     <div className={styles.categorySectionCardWrapper}>
       <p className={styles.categoryName}>
@@ -18,14 +28,8 @@ const CategorySectionCard = ({ categoryName, stories }) => {
           : `Top stories about ${categoryName}`}
       </p>
       {stories?.length > 0 ? (
-        <div
-          className={` ${
-            isExpanded
-              ? styles.expanded
-              : styles.categorySectionStoryCardWrapper
-          }`}
-        >
-          {stories?.map((story, _id) => (
+        <div className={`${styles.categorySectionStoryCardWrapper}`}>
+          {displayedStories?.map((story, _id) => (
             <StoryCard key={_id} story={story} />
           ))}
         </div>

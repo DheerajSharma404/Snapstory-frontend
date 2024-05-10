@@ -5,7 +5,7 @@ import { ModalContext } from "../../../contexts/ModalContexts";
 import StoryForm from "../../forms/storyForm/StoryForm";
 import StorySlider from "../storySlider/StorySlider";
 import styles from "./StoryCard.module.css";
-//we neet the whole story object in order to display it in the model
+
 
 const StoryCard = ({ story }) => {
   const { user } = React.useContext(AuthContext);
@@ -16,7 +16,8 @@ const StoryCard = ({ story }) => {
 
   const handleEditStory = (event) => {
     event.stopPropagation();
-    toggleModal(<StoryForm story={story} />);
+    const actionType = "edit";
+    toggleModal(<StoryForm story={story}  actionType={actionType } />);
   };
 
   return (

@@ -8,12 +8,13 @@ const App = () => {
   return (
     <>
       <Toaster richColors={true} position='top-center' />
+
       <Routes>
+        <Route path='/:storyId' element={<ViewStory />} />
         <Route element={<RootLayout />}>
           <Route path='/' element={<Homepage />} />
           <Route path='/bookmarks' element={<Bookmarkpage />} />
         </Route>
-        <Route path='/:storyId' element={<ViewStory />} />
       </Routes>
     </>
   );

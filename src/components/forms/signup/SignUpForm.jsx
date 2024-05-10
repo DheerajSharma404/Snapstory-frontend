@@ -30,29 +30,27 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const validation = userValidationSchema.safeParse(formData);
 
-      if (!validation.success) {
-        const error = validation.error;
-        let newError = {};
-        for (const issue of error.issues) {
-          newError = { ...newError, [issue.path[0]]: issue.message };
-        }
-        return setFormErrors(newError);
-      }
-      // If validation is successful, send a request to the backend
-      const response = await signUp(formData);
-      if (response.success) {
-        // Handle successful registration (e.g., navigate to another page)
-        toggleModal();
-        toast.success(response?.message);
-      }
-      // Handle failed registration (e.g., show an error message)
+    const validation = userValidationSchema.safeParse(formData);
 
-      setFormErrors({});
-    } catch (error) {
-      toast.error("Registration failed");
+    if (!validation.success) {
+      const error = validation.error;
+      let newError = {};
+      for (const issue of error.issues) {
+        newError = { ...newError, [issue.path[0]]: issue.message };
+      }
+      return setFormErrors(newError);
+    }
+    // If validation is successful, send a request to the backend
+    const response = await signUp(formData);
+ 
+    if (response?.success) {
+      // Handle successful registration (e.g., navigate to another page)
+      toggleModal();
+      toast.success(response?.message);
+    } else {
+      // Handle registration error
+      toast.error(response?.error?.explanation);
     }
   };
 

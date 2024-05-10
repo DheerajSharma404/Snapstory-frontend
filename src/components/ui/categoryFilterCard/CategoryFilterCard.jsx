@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import styles from "./CategoryFilterCard.module.css";
+import React from "react"
+import { StoryContext } from "../../../contexts/StoryContexts";
 
-const CategoryFilterCard = ({
-  title,
-  imageUrl,
-  selectedCategory,
-  setSelectedCategory,
-}) => {
- 
+const CategoryFilterCard = ({ title, imageUrl }) => {
+  const { selectedCategory, setSelectedCategory } =
+    React.useContext(StoryContext);
+
   return (
     <>
       <div
