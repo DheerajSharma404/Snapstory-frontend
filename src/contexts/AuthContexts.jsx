@@ -2,17 +2,13 @@
 import React from "react";
 import { validateUser } from "../api/ auth";
 
-// Step 1
 export const AuthContext = React.createContext();
 
-// Step 2
 export const AuthProvider = ({ children }) => {
-  // Step 3
   const [isAuthenticated, setIsAuthenticated] = React.useState(
     localStorage.getItem("x-access-token") ? true : false
   );
   const [user, setUser] = React.useState(null);
- 
 
   const login = async (userData) => {
     setIsAuthenticated(true);

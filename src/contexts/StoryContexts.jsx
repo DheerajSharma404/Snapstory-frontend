@@ -51,6 +51,13 @@ const StoryContextProvider = ({ children }) => {
       setBookmarkedStories([]);
     }
   }, [selectedCategory, isAuthenticated]);
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      fetchUserStories();
+      fetchBookmarkedStories();
+    }
+  }, [isAuthenticated, Stories]);
   return (
     <StoryContext.Provider
       value={{
